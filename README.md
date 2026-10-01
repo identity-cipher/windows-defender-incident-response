@@ -36,6 +36,17 @@ The investigation focused on answering the following questions:
 
 ## Investigation
 
+### Phase 0 — Initial Security Alert / Investigation Trigger
+
+On September 14, 2026, a network security control blocked an attempted connection from the Windows endpoint to `sub.pretty-fly4.net`, which was categorized as a potentially suspicious website.
+
+The blocked connection served as the **trigger for further endpoint investigation**. Because a blocked connection alone does not establish that a system has been compromised, I proceeded with Microsoft Defender scanning and PowerShell-based analysis to look for additional evidence of malicious activity.
+
+![Initial Security Alert](screenshots/00-initial-security-alert.png)
+
+*Figure 0. Initial security alert showing the blocked connection that prompted further endpoint investigation. Device name redacted for privacy.*
+
+The subsequent Microsoft Defender investigation identified multiple detections associated with offensive-security content contained within a Kali Linux installation ISO. **The investigation did not establish a causal relationship between the blocked domain and the Kali Linux ISO detections**, so the two findings were evaluated as separate pieces of evidence.
 ### Phase 1 — Detection & Initial Analysis
 
 A Microsoft Defender full system scan was performed as part of the initial investigation. PowerShell was used to verify the scan status and confirm that the full scan completed successfully.
@@ -153,7 +164,7 @@ The investigation incorporated activities aligned with the NIST Cybersecurity Fr
 
 ### Investigation Workflow
 
-**Detect → Analyze → Validate Scope → Remediate → Verify**
+**Alert → Detect → Analyze → Validate Scope → Remediate → Verify**
 
 This workflow helped ensure that remediation decisions were based on evidence collected during the investigation rather than on detection names alone.
 
@@ -306,6 +317,7 @@ windows-defender-incident-response/
 ├── README.md
 │
 ├── screenshots/
+    ├── 00-initial-security-alert.png
 │   ├── 01-full-scan-completed.png
 │   ├── 02-kali-iso-source-identification.png
 │   ├── 03-threat-execution-analysis.png
